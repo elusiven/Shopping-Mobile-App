@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="ShoppingApp.Views.RegisterPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="20"
+                         Margin="25">
+
+                <Label TextColor="#CE0B06"
+                       Text="SIGN UP"
+                       FontSize="Large"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       Margin="30,0,30,0" />
+                <Frame HasShadow="True"
+                       Padding="25"
+                       Margin="0,30,0,0">
+                    <StackLayout>
+                        <Label Text="Create An Account"
+                               FontAttributes="Bold"
+                               FontSize="Title"
+                               HorizontalOptions="Center"
+                               TextColor="#CE0B06" />
+                        <Entry Placeholder="Full Name"
+                               PlaceholderColor="#80574D"
+                               TextColor="#80574D"
+                               x:Name="EntName"
+                               Keyboard="Text"
+                               Text="{Binding FirstName.Value}" />
+                        <Label Text="{Binding FirstName.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                               Style="{StaticResource ValidationErrorLabelStyle}" />
+                        <Entry Placeholder="Email"
+                               PlaceholderColor="#80574D"
+                               TextColor="#80574D"
+                               x:Name="EntEmail"
+                               Keyboard="Email"
+                               Text="{Binding EmailAddress}" />
+                        <Entry Placeholder="Password"
+                               PlaceholderColor="#80574D"
+                               TextColor="#80574D"
+                               IsPassword="True"
+                               x:Name="EntPassword"
+                               Keyboard="Default"
+                               Text="{Binding Password}" />
+                        <Entry Placeholder="Confirm Password"
+                               PlaceholderColor="#80574D"
+                               TextColor="#80574D"
+                               IsPassword="True"
+                               x:Name="EntConfirmPassword"
+                               Keyboard="Default" />
+                        <Label Margin="20,0,20,0"
+                               FontSize="Small"
+                               HorizontalTextAlignment="Center"
+                               TextColor="#80574D"
+                               Text="By creating an account you agree to our Terms of Service and Privacy Policy" />
+                        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+                    </StackLayout>
+                </Frame>
+                <Button Text="CONTINUE"
+                        TextColor="White"
+                        BackgroundColor="#CE0B06"
+                        x:Name="BtnSignUp"
+                        Command="{Binding PerformSignUpCommand}" />
+                <Label Text="Already have an account?"
+                       HorizontalTextAlignment="Center"
+                       TextColor="#80574D" />
+                <Button Text="Login"
+                        BackgroundColor="#CE0B06"
+                        TextColor="White"
+                        x:Name="BtnLogin"
+                        Command="{Binding NavigateToLoginPageCommand}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\ShoppingApp.Api.API.Data\ShoppingApp.Api.API.Data.csproj" />
+    <ProjectReference Include="..\ShoppingApp.Api.Services\ShoppingApp.Api.Services.csproj" />
+  </ItemGroup>
+
+</Project>

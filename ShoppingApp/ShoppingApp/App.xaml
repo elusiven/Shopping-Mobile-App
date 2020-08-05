@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:converters="clr-namespace:ShoppingApp.Converters;assembly=ShoppingApp"
+             x:Class="ShoppingApp.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ErrorColor">#ff5252</Color>
+
+            <OnPlatform x:Key="LittleSize"
+                        x:TypeArguments="x:Double">
+                <On Platform="iOS" Value="11" />
+                <On Platform="Android, UWP, WinRT, WinPhone" Value="12" />
+            </OnPlatform>
+        </ResourceDictionary>
+
+        <Style x:Key="ValidationErrorLabelStyle"
+               TargetType="{x:Type Label}">
+            <Setter Property="TextColor"
+                    Value="{StaticResource ErrorColor}" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource LittleSize}" />
+        </Style>
+
+        <converters:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
+    </Application.Resources>
+</prism:PrismApplication>
