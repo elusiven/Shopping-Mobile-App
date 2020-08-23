@@ -80,7 +80,7 @@ namespace ShoppingApp.ViewModels
             }
             catch (ApiServiceException ex)
             {
-                if (ex.Errors != null)
+                if (ex.Errors != null && ex.Errors.Count > 0)
                 {
                     var firstError = ex.Errors.FirstOrDefault().Value[0];
                     await _pageDialogService.DisplayAlertAsync("Error", firstError, "Ok");

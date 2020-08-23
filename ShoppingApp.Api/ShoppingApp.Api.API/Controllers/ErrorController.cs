@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using ShoppingApp.Api.API.Common;
+using ShoppingApp.Api.API.Common.Exceptions;
 
 namespace ShoppingApp.Api.API.Controllers
 {
@@ -12,19 +14,30 @@ namespace ShoppingApp.Api.API.Controllers
     public class ErrorController : ControllerBase
     {
         [Route("error")]
-        public MyErrorResponse Error()
+        public ApiErrorResponse Error()
         {
+            ApiErrorResponse response = new ApiErrorResponse();
+
             var context = HttpContext.Features.Get<IExceptionHandlerFeature>();
-            var exception = context?.Error; 
-            var code = 500; 
+            var exception = context?.Error;
+            var code = 500;
 
-            if (exception is MyNotFoundException) code = 404; 
-            else if (exception is MyUnauthorizedException) code = 401; 
-            else if (exception is MyException) code = 400; 
+            if (exception is UnauthorizedException)
+            {
+                code = 401;
+                response.Status = 401;
+            }
 
-            Response.StatusCode = code; 
+            if (exception?.InnerException is ServiceException serviceException)
+            {
+                code = 400;
+                response.Status = code;
+                response.Errors = serviceException.Errors;
+            }
 
-            return new MyErrorResponse(exception); 
+            Response.StatusCode = code;
+
+            return response;
         }
     }
 }
