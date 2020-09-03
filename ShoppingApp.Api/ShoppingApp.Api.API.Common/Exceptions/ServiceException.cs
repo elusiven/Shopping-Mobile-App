@@ -19,5 +19,10 @@ namespace ShoppingApp.Api.API.Common.Exceptions
         {
             Errors = new Dictionary<string, string[]>();
         }
+
+        public ServiceException()
+        {
+            Errors = new Dictionary<string, string[]>();
+        }
     }
 }

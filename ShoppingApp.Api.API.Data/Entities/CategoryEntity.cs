@@ -13,9 +13,6 @@ namespace ShoppingApp.Api.API.Data.Entities
         public string Name { get; set; }
         public string ImageUrl { get; set; }
 
-        [NotMapped]
-        public byte[] ImageArray { get; set; }
-
         public ICollection<ProductEntity> Products { get; set; }
     }
 }

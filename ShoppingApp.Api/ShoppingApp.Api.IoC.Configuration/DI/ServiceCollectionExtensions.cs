@@ -5,7 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using Microsoft.AspNetCore.Identity;
+using ShoppingApp.Api.API.Data.Contracts;
 using ShoppingApp.Api.API.Data.Entities;
+using ShoppingApp.Api.API.Data.Repositories;
+using ShoppingApp.Api.Services.Services;
 
 namespace ShoppingApp.Api.IoC.Configuration.DI
 {
@@ -15,7 +18,11 @@ namespace ShoppingApp.Api.IoC.Configuration.DI
         {
             if (services != null)
             {
+                services.AddScoped<ICategoryRepository, CategoryRepository>();
+
                 services.AddTransient<IUserService, UserService>();
+                services.AddTransient<ICategoryService, CategoryService>();
+                services.AddTransient<ILocalFileService, LocalFileService>();
             }
         }
 
