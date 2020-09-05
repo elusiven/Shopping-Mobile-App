@@ -50,7 +50,7 @@ namespace ShoppingApp.Api.API.Controllers.V1
         {
             _logger.LogInformation("CategoryController::Update");
             var category = await _categoryService.Update(model);
-            return Accepted(new Uri(Url.Action("Get", new { id = category.Id })), category);
+            return Accepted(new Uri(Url.Action("Get", new { id = category.Id }), UriKind.Relative), category);
         }
 
         [HttpDelete]

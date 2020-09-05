@@ -5,10 +5,12 @@ using ShoppingApp.Application.Models.Requests;
 using ShoppingApp.Common.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using ShoppingApp.Application.Models.Product;
 
 namespace ShoppingApp.Application.Services
 {
@@ -102,6 +104,41 @@ namespace ShoppingApp.Application.Services
 
                 throw new ApiServiceException("Failed to register user.", ex);
             }
+        }
+
+        public async Task<ObservableCollection<Category>> RequestCategoriesAsync()
+        {
+            ObservableCollection<Category> categories = new ObservableCollection<Category>();
+
+            try
+            {
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    httpClient.BaseAddress = new Uri(BaseUrl);
+
+                    var response = await httpClient.GetAsync("api/v1/categories");
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        var responseContent = await response.Content.ReadAsStringAsync();
+                        var errorResponseModel = JsonConvert.DeserializeObject<ApiErrorResponseModel>(responseContent);
+                        throw new ApiServiceException("One or more validation errors occurred") { Errors = errorResponseModel?.Errors };
+                    }
+
+                    categories =
+                        JsonConvert.DeserializeObject<ObservableCollection<Category>>(
+                            await response.Content.ReadAsStringAsync());
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                if (ex.InnerException?.GetType() == typeof(SocketException))
+                    throw new ApiServiceException("Internet connection is required.", ex);
+
+                throw new ApiServiceException("Failed to fetch categories.", ex);
+            }
+
+            return categories;
         }
     }
 }

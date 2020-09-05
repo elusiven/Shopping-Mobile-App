@@ -7,6 +7,74 @@
 
     <ContentPage.Content>
         <Grid>
+
+            <CollectionView x:Name="CvProducts"
+                            SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="2" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.Header>
+                    <StackLayout>
+                        <Label Margin="15,170,15,0"
+                               Text="Our Menu"
+                               TextColor="Black"
+                               FontSize="Medium" />
+                        <CollectionView  x:Name="CvCategories"
+                                         HeightRequest="130"
+                                         SelectionMode="Single" ItemsSource="{Binding Categories}">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Horizontal" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Frame Padding="0"
+                                               BackgroundColor="Transparent"
+                                               Margin="15,0,15,0"
+                                               HasShadow="True">
+                                            <StackLayout Orientation="Vertical">
+                                                <Frame Padding="0"
+                                                       CornerRadius="100"
+                                                       IsClippedToBounds="True"
+                                                       HeightRequest="90"
+                                                       WidthRequest="90"
+                                                       HorizontalOptions="Center">
+                                                    <Image Aspect="AspectFill"
+                                                           HorizontalOptions="FillAndExpand"
+                                                           VerticalOptions="FillAndExpand" />
+                                                </Frame>
+                                                <Label TextColor="#B00905"
+                                                       HorizontalTextAlignment="Center"
+                                                       FontSize="Medium" />
+                                            </StackLayout>
+                                        </Frame>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Label Margin="15,15,15,0"
+                               Text="Popular Products"
+                               TextColor="Black"
+                               FontSize="Medium" />
+                    </StackLayout>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Spacing="5"
+                                     Padding="10"
+                                     Margin="15,0,15,0"
+                                     Orientation="Vertical">
+                            <Image Aspect="Fill"
+                                   HeightRequest="150"
+                                   WidthRequest="150" />
+                            <Label TextColor="#000000" />
+                            <Label TextColor="#B00905" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
             <Grid ColumnSpacing="0"
                   HorizontalOptions="FillAndExpand"
                   VerticalOptions="Start"
