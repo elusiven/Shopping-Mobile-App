@@ -247,7 +247,7 @@
                                VerticalTextAlignment="Center"
                                FontSize="20" />
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer x:Name="TapLogout" />
+                            <TapGestureRecognizer x:Name="TapLogout" Command="{Binding LogOutCommand}" />
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </StackLayout>

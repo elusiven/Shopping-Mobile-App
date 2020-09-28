@@ -24,7 +24,13 @@ namespace ShoppingApp.Application.Services
             _storageService = storageService;
         }
 
-        public string BaseUrl => "https://192.168.1.8:45455/";
+        public string BaseUrl => "https://192.168.1.9:45455/";
+
+        public void SignOut()
+        {
+            _bearerToken = null;
+            _storageService.DeleteObjectInSecureStorage(Storage.Keys.TokenPayload);
+        }
 
         /// <summary>
         /// Request bearer token payload from the API

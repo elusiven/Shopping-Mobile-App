@@ -11,5 +11,7 @@ namespace ShoppingApp.Application.Contracts
         Task<T> GetObjectFromSecureStorageAsync<T>(string key);
 
         Task SetObjectInSecureStorageAsync(string key, object obj);
+
+        void DeleteObjectInSecureStorage(string key);
     }
 }

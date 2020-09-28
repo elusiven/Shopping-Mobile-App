@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using ShoppingApp.Application.Contracts;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace ShoppingApp.Application.Services
@@ -21,6 +17,11 @@ namespace ShoppingApp.Application.Services
         {
             var jsonObjString = JsonConvert.SerializeObject(obj);
             await SecureStorage.SetAsync(key, jsonObjString);
+        }
+
+        public void DeleteObjectInSecureStorage(string key)
+        {
+            SecureStorage.Remove(key);
         }
     }
 }

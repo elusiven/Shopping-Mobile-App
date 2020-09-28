@@ -1,14 +1,12 @@
 ﻿using AutoMapper;
-using ShoppingApp.Api.Services;
-using ShoppingApp.Api.Services.Contracts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
-using Microsoft.AspNetCore.Identity;
 using ShoppingApp.Api.API.Data.Contracts;
-using ShoppingApp.Api.API.Data.Entities;
 using ShoppingApp.Api.API.Data.Repositories;
+using ShoppingApp.Api.Services;
+using ShoppingApp.Api.Services.Contracts;
 using ShoppingApp.Api.Services.Services;
+using System.Reflection;
 
 namespace ShoppingApp.Api.IoC.Configuration.DI
 {

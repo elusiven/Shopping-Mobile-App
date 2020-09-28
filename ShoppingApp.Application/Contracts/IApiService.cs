@@ -14,5 +14,7 @@ namespace ShoppingApp.Application.Contracts
         Task RequestSignUpAsync(SignUpRequest model);
 
         Task<ObservableCollection<Category>> RequestCategoriesAsync();
+
+        void SignOut();
     }
 }
