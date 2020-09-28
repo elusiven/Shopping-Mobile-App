@@ -24,7 +24,7 @@ namespace ShoppingApp.Application.Services
             _storageService = storageService;
         }
 
-        public string BaseUrl => "https://192.168.43.197:45455/";
+        public string BaseUrl => "https://192.168.1.8:45455/";
 
         /// <summary>
         /// Request bearer token payload from the API

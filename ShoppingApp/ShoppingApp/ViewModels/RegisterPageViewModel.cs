@@ -3,11 +3,10 @@ using Prism.Navigation;
 using Prism.Services;
 using ShoppingApp.Application.Contracts;
 using ShoppingApp.Application.Models.Requests;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using ShoppingApp.Common.Exceptions;
 using ShoppingApp.Validations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ShoppingApp.ViewModels
 {

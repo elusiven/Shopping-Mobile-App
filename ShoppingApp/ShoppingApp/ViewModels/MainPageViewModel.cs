@@ -9,7 +9,14 @@ namespace ShoppingApp.ViewModels
     public class MainPageViewModel : ViewModelBase
     {
         private readonly IApiService _apiService;
-        public ObservableCollection<Category> Categories { get; set; }
+
+        private ObservableCollection<Category> _categories;
+
+        public ObservableCollection<Category> Categories
+        {
+            get { return _categories; }
+            set { SetProperty(ref _categories, value); }
+        }
 
         public MainPageViewModel(
             INavigationService navigationService,
@@ -19,6 +26,13 @@ namespace ShoppingApp.ViewModels
             _apiService = apiService;
             Title = "Main Page";
             Categories = new ObservableCollection<Category>();
+
+            Categories.Add(new Category
+            {
+                Id = 42,
+                ImageUrl = "https://google.com",
+                Name = "Snacks"
+            });
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
